@@ -1,0 +1,58 @@
+# depslib dependency file v1.0
+1392024987 source:/home/gmanfred/devel/these/projects/SimulationModel2D/Simulateur.cpp
+	"Simulateur.h"
+
+1391852829 /home/gmanfred/devel/these/projects/SimulationModel2D/Simulateur.h
+	<iostream>
+	"tools.h"
+	"Object.h"
+
+1391678614 /home/gmanfred/devel/these/projects/SimulationModel2D/View.h
+	<iostream>
+	<opencv2/core/core.hpp>
+	<opencv2/features2d/features2d.hpp>
+	"tools.h"
+
+1391854961 /home/gmanfred/devel/these/projects/SimulationModel2D/tools.h
+	<iostream>
+	<cstdlib>
+	<vector>
+	<algorithm>
+	<opencv2/core/core.hpp>
+	<opencv2/features2d/features2d.hpp>
+
+1392024893 source:/home/gmanfred/devel/these/projects/SimulationModel2D/View.cpp
+	"View.h"
+	<opencv2/calib3d/calib3d.hpp>
+
+1392024994 source:/home/gmanfred/devel/these/projects/SimulationModel2D/main.cpp
+	"Simulateur.h"
+	"POM.h"
+
+1391510954 source:/home/gmanfred/devel/these/projects/SimulationModel2D/tools.cpp
+	"tools.h"
+
+1391007059 source:/home/gmanfred/devel/these/projects/SimulationModel2D/POM2D.cpp
+	"POM2D.h"
+
+1391006008 /home/gmanfred/devel/these/projects/SimulationModel2D/POM2D.h
+	<opencv2/calib3d/calib3d.hpp>
+	"Simulateur.h"
+	"View.h"
+
+1391035559 source:/home/gmanfred/devel/these/projects/SimulationModel2D/Object.cpp
+	"Object.h"
+
+1391035587 /home/gmanfred/devel/these/projects/SimulationModel2D/Object.h
+	"View.h"
+
+1392025641 source:/home/gmanfred/devel/these/projects/SimulationModel2D/POM.cpp
+	"POM.h"
+	"opencv2/core/core_c.h"
+
+1392024592 /home/gmanfred/devel/these/projects/SimulationModel2D/POM.h
+	<opencv2/core/core.hpp>
+	<opencv2/calib3d/calib3d.hpp>
+	"tools.h"
+	"Object.h"
+
