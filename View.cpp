@@ -5,11 +5,12 @@
 using namespace std;
 using namespace cv;
 // t = 1 row and 3 columns
-View::View (Mat K, Mat Rwv, Mat twv, Mat points3d, Mat indices, bool kinect):
+View::View (Mat K, double noise, Mat Rwv, Mat twv, Mat points3d, Mat indices, bool kinect):
 K_(K), descriptors_(indices) {
     Rov_ = Mat::eye (3, 3, matrix_type);
     tov_ = Mat::zeros (1, 3, matrix_type);
     points2d_ = Mat(points3d.rows, 2, matrix_type);
+    noise_ = noise;
 
     for ( size_t i = 0; i < points3d.rows; ++i ) {
         Mat point3d = points3d.row(i);
@@ -41,6 +42,15 @@ void View::points3dFromMatches (vector<DMatch> matches,
     }
 }
 
+void View::worldPoints3dFromMatches (vector<DMatch> matches,
+                                     Mat &points3d) {
+    points3d = Mat (matches.size(), 3, matrix_type);
+    for ( size_t i = 0; i < matches.size(); ++i ) {
+        int idx = matches[i].queryIdx;
+        points3d.at<point3d_type>(i) = world_points3d_.at<point3d_type>(idx);
+    }
+}
+
 void View::points2dFromMatches (vector<DMatch> matches,
                                 Mat &points2d) {
     points2d = Mat (matches.size(), 2, matrix_type);
@@ -57,10 +67,8 @@ void View::projectWithNoise (Mat Rwv, Mat twv,
     Mat rvec;
     Rodrigues(Rwv, rvec);
 
-    number_type noise = 8;
-    Mat noise_mat = (Mat_<number_type>(1, 2, matrix_type) << myRand(-noise, +noise),
-                                                             myRand(-noise, +noise));
-
+    Mat noise_mat = (Mat_<number_type>(1, 2, matrix_type) << myRand(-noise_, +noise_),
+                                                             myRand(-noise_, +noise_));
     projectPoints (points3d, rvec, twv, K_, vector<number_type>(), points2d);
     points2d = points2d.reshape (1, 1); // 1 channel, 1 row
     points2d += noise_mat;

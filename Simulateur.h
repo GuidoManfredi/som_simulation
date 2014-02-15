@@ -10,8 +10,8 @@ class Simulateur
   public:
     Simulateur (cv::Mat K);
 
-    Object generateObject (int N, int K);
-    View generateView (cv::Mat points3d, int start, int end, bool kinect, int pose);
+    Object generateObject (int N, int K, double noise);
+    View generateView (cv::Mat points3d, double noise, int start, int end, bool kinect, int pose);
 
   private:
     void specific_pose0 (cv::Mat &R, cv::Mat &t);
