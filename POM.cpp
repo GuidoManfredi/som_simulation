@@ -109,6 +109,11 @@ void POM::mySolvePnP (Mat p3d, Mat p2d, Mat K, Mat &Rov, Mat &tov) {
 
     Rodrigues (rvec, Rov);
 }
+
+void POM::solveFaugeras (Mat points3d, Mat points2d, Mat &P) {
+    P = Mat::eye (4, 4, matrix_type);
+}
+
 /*
 void POM::mySolvePnPPoints (Mat p3d, Mat p2d, Mat K, Mat &Rov, Mat &tov) {
     Mat rvec = Mat::zeros (1, 3, matrix_type);

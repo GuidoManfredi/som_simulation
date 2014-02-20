@@ -22,6 +22,7 @@ void detect (View &current, View train,
              number_type &R_err, number_type &t_err);
 
 void testAll ();
+void testNoK ();
 
 Mat K = (Mat_<number_type>(3, 3) << 800,   0, 320,
                                       0, 800, 240,
@@ -33,9 +34,10 @@ POM pom;
 int main() {
     //testAll ();
     Mat Rerr, terr;
-    num_matches_matches_xp (1500, 4.0, 5, 25, Rerr, terr);
+    //num_matches_matches_xp (1500, 4.0, 5, 25, Rerr, terr);
     //noise_many_xp (100);
     //num_match_many_xp (100);
+    testNoK ();
     return 0;
 }
 
@@ -67,8 +69,8 @@ void num_matches_matches_xp (int N, number_type noise,
             t_error.at<number_type>(j, i) = t_view_err;
         }
     }
-    //writeMat ("error.txt", R_error);
-    writeMat ("error.txt", t_error);
+    writeMat ("error.txt", R_error);
+    //writeMat ("error.txt", t_error);
 }
 
 void noise_many_xp (int N) {
@@ -81,7 +83,7 @@ void noise_many_xp (int N) {
         Rerr.copyTo(R_results.col(i));
         terr.copyTo(t_results.col(i));
     }
-    //writeMat ("error.txt", R_results);
+    writeMat ("error.txt", R_results);
     //writeMat ("error.txt", t_results);
 }
 
@@ -238,4 +240,31 @@ void testAll () {
                     R_error, t_error);
     cout << R_error << " " << t_error << endl;
 */
+    cout << "*** Testing no K assumption ***" << endl;
+
+}
+
+void testNoK () {
+    cout << "Creating test object" << endl;
+    int N = 10;
+    int k = 1;
+    number_type noise = 5.0;
+    Object object = sim.generateObject (N, k, noise);
+
+    cout << "Ground truth" << endl;
+    Mat Rwc = object.views_[0].Rwv_;
+    Mat twc = object.views_[0].twv_;
+    cout << Rwc << endl;
+    cout << twc << endl;
+
+    cout << "Solve PnP" << endl;
+    Mat Rwv, twv;
+    pom.mySolvePnP (object.points3d_, object.views_[0].points2d_, object.views_[0].K_, Rwv, twv);
+    cout << Rwv << endl;
+    cout << twv << endl;
+
+    cout << "Faugeras" << endl;
+    Mat Pwv;
+    pom.solveFaugeras (object.points3d_, object.views_[0].points2d_, Pwv);
+    cout << Pwv << endl;
 }

@@ -19,9 +19,10 @@ class POM
     void computeTrainIntrinsic (View current, View &train, std::vector<cv::DMatch> matches);
     number_type computeCurrentPose (View &current, View train, std::vector<cv::DMatch> matches);
 
-  private:
+  //private:
     void object2viewFrame (cv::Mat points3d, cv::Mat &Rvo, cv::Mat &tvo);
     void mySolvePnP (cv::Mat points3d, cv::Mat points2d, cv::Mat K, cv::Mat &Rov, cv::Mat &tov);
+    void solveFaugeras (cv::Mat points3d, cv::Mat points2d, cv::Mat &P);
 //    void P2Rt (cv::Mat P, cv::Mat &R, cv::Mat &t);
 //    cv::Mat Rt2P (cv::Mat R, cv::Mat t);
     //void mySolvePnPPoints (cv::Mat points3d, cv::Mat points2d, cv::Mat K, cv::Mat &Rov, cv::Mat &tov);
