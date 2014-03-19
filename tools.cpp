@@ -28,7 +28,8 @@ void getBarycentre (Mat points3d,
 
 
 number_type myRand(number_type min, number_type max) {
-  return min + (max - min) * number_type(rand()) / RAND_MAX;
+  //return min + (max - min) * number_type(rand()) / RAND_MAX;
+  return min + max  * number_type(rand()) / RAND_MAX;
 }
 
 void inter ( Mat query, Mat train,
@@ -44,23 +45,6 @@ void inter ( Mat query, Mat train,
             }
         }
     }
-}
-
-void relative_error(Mat R_true, Mat t_true,
-                      Mat R_est, Mat t_est,
-                      number_type &R_err, number_type &t_err) {
-    R_err = 0.0;
-    t_err = 0.0;
-    Mat r_true, r_est;
-    Rodrigues (R_true, r_true);
-    Rodrigues (R_est, r_est);
-
-    R_err = norm (r_est, r_true, NORM_L2|NORM_RELATIVE);
-    t_err = norm (t_est, t_true.t(), NORM_L2|NORM_RELATIVE);
-//    R_err = norm (r_est, r_true, NORM_L2) / (r_true, NORM_L2);
-//    t_err = norm (t_est, t_true.t(), NORM_L2) / (t_true, NORM_L2);
-//    R_err = norm (r_est, r_true, NORM_L2);
-//    t_err = norm (t_est, t_true.t(), NORM_L2);
 }
 
 void writeMat (char* filename, Mat m) {
@@ -119,6 +103,33 @@ Mat Rt2P (Mat R, Mat t) {
     return P;
 }
 
+Mat Rt2P34 (Mat R, Mat t) {
+    Mat P = Mat::zeros(3, 4, matrix_type);
+    P.at<number_type>(0,0) = R.at<number_type>(0,0);
+    P.at<number_type>(0,1) = R.at<number_type>(0,1);
+    P.at<number_type>(0,2) = R.at<number_type>(0,2);
+    P.at<number_type>(0,3) = t.at<number_type>(0);
+
+    P.at<number_type>(1,0) = R.at<number_type>(1,0);
+    P.at<number_type>(1,1) = R.at<number_type>(1,1);
+    P.at<number_type>(1,2) = R.at<number_type>(1,2);
+    P.at<number_type>(1,3) = t.at<number_type>(1);
+
+    P.at<number_type>(2,0) = R.at<number_type>(2,0);
+    P.at<number_type>(2,1) = R.at<number_type>(2,1);
+    P.at<number_type>(2,2) = R.at<number_type>(2,2);
+    P.at<number_type>(2,3) = t.at<number_type>(2);
+
+    return P;
+}
+
+Mat KRt2P (Mat K, Mat R, Mat t) {
+    cv::Mat KR = K * R;
+    cv::Mat Kt = K * t.t();
+    cv::Mat P = Rt2P (KR, Kt);
+    return P;
+}
+/*
 void relative_error2(Mat Rtrue, Mat ttrue,
                       Mat Rest, Mat test,
                       number_type &rot_err, number_type &transl_err) {
@@ -127,33 +138,28 @@ void relative_error2(Mat Rtrue, Mat ttrue,
   mat2quat(Rtrue, qtrue);
   mat2quat(Rest, qest);
 
-  double rot_err1 = sqrt((qtrue.at<number_type>(0) - qest.at<number_type>(0)) * (qtrue.at<number_type>(0) - qest.at<number_type>(0))
-                         + (qtrue.at<number_type>(1) - qest.at<number_type>(1)) * (qtrue.at<number_type>(1) - qest.at<number_type>(1))
-                         + (qtrue.at<number_type>(2) - qest.at<number_type>(2)) * (qtrue.at<number_type>(2) - qest.at<number_type>(2))
-                         + (qtrue.at<number_type>(3) - qest.at<number_type>(3)) * (qtrue.at<number_type>(3) - qest.at<number_type>(3)) )
-                         / sqrt(qtrue.at<number_type>(0) * qtrue.at<number_type>(0)
-                                 + qtrue.at<number_type>(1) * qtrue.at<number_type>(1)
-                                 + qtrue.at<number_type>(2) * qtrue.at<number_type>(2)
-                                 + qtrue.at<number_type>(3) * qtrue.at<number_type>(3));
-
-  double rot_err2 = sqrt((qtrue.at<number_type>(0) + qest.at<number_type>(0)) * (qtrue.at<number_type>(0) + qest.at<number_type>(0))
-                         + (qtrue.at<number_type>(1) + qest.at<number_type>(1)) * (qtrue.at<number_type>(1) + qest.at<number_type>(1))
-                         + (qtrue.at<number_type>(2) + qest.at<number_type>(2)) * (qtrue.at<number_type>(2) + qest.at<number_type>(2))
-                         + (qtrue.at<number_type>(3) + qest.at<number_type>(3)) * (qtrue.at<number_type>(3) + qest.at<number_type>(3)) )
-                         / sqrt(qtrue.at<number_type>(0) * qtrue.at<number_type>(0)
-                                 + qtrue.at<number_type>(1) * qtrue.at<number_type>(1)
-                                 + qtrue.at<number_type>(2) * qtrue.at<number_type>(2)
-                                 + qtrue.at<number_type>(3) * qtrue.at<number_type>(3));
-
+  double rot_err1 = norm(qtrue - qest)/norm(qest);
+  double rot_err2 = norm(qtrue + qest)/norm(qest);
   rot_err = min(rot_err1, rot_err2);
 
-  transl_err =
-    sqrt((ttrue.at<number_type>(0) - test.at<number_type>(0)) * (ttrue.at<number_type>(0) - test.at<number_type>(0)) +
-     (ttrue.at<number_type>(1) - test.at<number_type>(1)) * (ttrue.at<number_type>(1) - test.at<number_type>(1)) +
-     (ttrue.at<number_type>(2) - test.at<number_type>(2)) * (ttrue.at<number_type>(2) - test.at<number_type>(2))) /
-    sqrt(ttrue.at<number_type>(0) * ttrue.at<number_type>(0)
-         + ttrue.at<number_type>(1) * ttrue.at<number_type>(1)
-         + ttrue.at<number_type>(2) * ttrue.at<number_type>(2));
+  transl_err = norm (ttrue - test)/norm(test);
+}
+*/
+
+void relative_error2(Mat Rtrue, Mat ttrue,
+                      Mat Rest, Mat test,
+                      number_type &rot_err, number_type &transl_err) {
+    rot_err = transl_err = 0;
+    Mat rtrue, rest;
+
+    Rodrigues (Rtrue, rtrue);
+    Rodrigues (Rest, rest);
+
+//    rot_err = norm(rest, rtrue, NORM_L2|NORM_RELATIVE);
+//    transl_err = norm(test, ttrue, NORM_L2|NORM_RELATIVE);
+    rot_err = norm(rtrue, rest, NORM_L2|NORM_RELATIVE);
+    transl_err = norm(ttrue, test, NORM_L2|NORM_RELATIVE);
+    //cout << "Error " << rot_err << " " << transl_err << endl;
 }
 
 void mat2quat(const Mat R, Mat &q)
@@ -194,4 +200,3 @@ void mat2quat(const Mat R, Mat &q)
     q.at<number_type>(2) *= scale;
     q.at<number_type>(3) *= scale;
 }
-

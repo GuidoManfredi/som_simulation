@@ -110,22 +110,9 @@ void POM::mySolvePnP (Mat p3d, Mat p2d, Mat K, Mat &Rov, Mat &tov) {
     Rodrigues (rvec, Rov);
 }
 
-void POM::solveFaugeras (Mat points3d, Mat points2d, Mat &P) {
-    P = Mat::eye (4, 4, matrix_type);
+void POM::solveCalibrationMethods (Mat points3d, Mat points2d, Mat &K, Mat &R, Mat &t, CalibrationSolvers solver) {
+    if ( solver == LINEAR1 )
+        solveCalibrateLinear1 (points3d, points2d, K);
+    if ( solver == LINEAR3 )
+        solveCalibrateLinear3 (points3d, points2d, K, R, t);
 }
-
-/*
-void POM::mySolvePnPPoints (Mat p3d, Mat p2d, Mat K, Mat &Rov, Mat &tov) {
-    Mat rvec = Mat::zeros (1, 3, matrix_type);
-    tov = Mat::zeros (1, 3, matrix_type);
-
-    vector<point3d_type> p3d_vec = Mat_<point3d_type> (p3d.reshape(1, p3d.rows));
-    vector<point2d_type> p2d_vec = Mat_<point2d_type> (p2d.reshape(1, p2d.rows));
-    //solvePnP (p3d_vec, p2d_vec, K, vector<number_type>(), rvec, tov);
-    solvePnP (p3d_vec, p2d_vec, K, vector<number_type>(), rvec, tov, CV_EPNP);
-
-    Rodrigues (rvec, Rov);
-    Rov.convertTo (Rov, matrix_type);
-    tov.convertTo (tov, matrix_type);
-}
-*/

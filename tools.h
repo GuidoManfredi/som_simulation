@@ -43,6 +43,8 @@ void relative_error(cv::Mat R_true, cv::Mat t_true,
 void writeMat (char* filename, cv::Mat m);
 void P2Rt (cv::Mat P, cv::Mat &R, cv::Mat &t);
 cv::Mat Rt2P (cv::Mat R, cv::Mat t);
+cv::Mat Rt2P34 (cv::Mat R, cv::Mat t);
+cv::Mat KRt2P (cv::Mat K, cv::Mat R, cv::Mat t);
 
 void relative_error2(cv::Mat Rtrue, cv::Mat ttrue,
                       cv::Mat Rest, cv::Mat test,

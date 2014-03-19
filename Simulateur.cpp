@@ -9,7 +9,7 @@ Simulateur::Simulateur (Mat K): K_(K) {
 
 Object Simulateur::generateObject (int N, int K, double noise) {
     Object object;
-    object.points3d_ = Mat(N, 3, matrix_type);
+    object.points3d_ = Mat::zeros(N, 3, matrix_type);
     for ( int i = 0; i < N; ++i ) {
         random_point (object.points3d_.at<number_type>(i, 0),
                       object.points3d_.at<number_type>(i, 1),
@@ -17,10 +17,12 @@ Object Simulateur::generateObject (int N, int K, double noise) {
     }
 
     int step = N/K;
-    cout << "Points per image : " << step << endl;
     object.views_.resize (K);
     for ( int i = 0; i < K; ++i) {
-        View view = generateView (object.points3d_, noise, i * step, (i + 1) * step, false, 0);
+        //View view = generateView (object.points3d_, noise, i * step, (i + 1) * step, false, 0); // only Z translation
+        cout << "KikouSimulateur" << endl;
+        cout << object.points3d_ << endl;
+        View view = generateView (object.points3d_, noise, i * step, (i + 1) * step, false, 3); // random
         object.views_[i] = view;
     }
 
@@ -48,6 +50,11 @@ View Simulateur::generateView (Mat points3d, double noise, int start, int end, b
     Mat Pwv = Pvw.inv();
     Mat Rwv, twv;
     P2Rt (Pwv, Rwv, twv);
+//    cout << K_ << endl;
+//    cout << noise << endl;
+//    cout << Rwv << endl;
+//    cout << twv << endl;
+//    cout << view_points3d.size() << endl;
     View view (K_, noise, Rwv, twv, view_points3d, indices, kinect);
 
     return view;
@@ -60,12 +67,12 @@ void Simulateur::specific_pose0 (Mat &R, Mat &t) {
     t = Mat::zeros (1, 3, matrix_type);
 
     const number_type range = 1;
-//    t.at<number_type>(0) = myRand(0, range * 1);
-//    t.at<number_type>(1) = myRand(0, range * 1);
-//    t.at<number_type>(2) = myRand(0, range * 10);
-    t.at<number_type>(0) = 0;
-    t.at<number_type>(1) = 0;
-    t.at<number_type>(2) = 6;
+    t.at<number_type>(0) = myRand(0, range * 1);
+    t.at<number_type>(1) = myRand(0, range * 1);
+    t.at<number_type>(2) = myRand(0, range * 1);
+//    t.at<number_type>(0) = 0;
+//    t.at<number_type>(1) = 0;
+//    t.at<number_type>(2) = 6;
 }
 
 void Simulateur::specific_pose45 (Mat &R, Mat &t) {
@@ -121,12 +128,12 @@ void Simulateur::random_pose(Mat &R, Mat &t) {
     R.at<number_type>(2,1) = -sin(theta) * cos(phi);
     R.at<number_type>(2,2) = cos(theta);
 
-    t.at<number_type>(0) = myRand(0, range * 1);
-    t.at<number_type>(1) = myRand(0, range * 1);
-    t.at<number_type>(2) = myRand(0, range * 10);
-//    t.at<number_type>(0) = 0;
-//    t.at<number_type>(1) = 0;
-//    t.at<number_type>(2) = 6;
+//    t.at<number_type>(0) = myRand(0, range * 1);
+//    t.at<number_type>(1) = myRand(0, range * 1);
+//    t.at<number_type>(2) = myRand(0, range * 1);
+    t.at<number_type>(0) = 0;
+    t.at<number_type>(1) = 0;
+    t.at<number_type>(2) = 6;
 }
 
 void Simulateur::random_point(number_type & Xw, number_type & Yw, number_type & Zw) {

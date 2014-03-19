@@ -17,6 +17,7 @@
 				<Linker>
 					<Add library="/usr/local/lib/libopencv_core.so" />
 					<Add library="/usr/local/lib/libopencv_calib3d.so" />
+					<Add library="/usr/local/lib/liblmfit.so" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -36,17 +37,26 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Calibrate.cpp" />
+		<Unit filename="Calibrate.h" />
+		<Unit filename="LM.cpp" />
+		<Unit filename="LM.h" />
 		<Unit filename="Object.cpp" />
 		<Unit filename="Object.h" />
 		<Unit filename="POM.cpp" />
 		<Unit filename="POM.h" />
 		<Unit filename="Simulateur.cpp" />
 		<Unit filename="Simulateur.h" />
+		<Unit filename="Simulateur2.cpp" />
+		<Unit filename="Simulateur2.h" />
 		<Unit filename="View.cpp" />
 		<Unit filename="View.h" />
+		<Unit filename="XpCalibrate.cpp" />
+		<Unit filename="XpCalibrate.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="tools.cpp" />
 		<Unit filename="tools.h" />
+		<Unit filename="trash.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

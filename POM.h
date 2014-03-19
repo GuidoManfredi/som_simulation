@@ -5,6 +5,7 @@
 
 #include "tools.h"
 #include "Object.h"
+#include "Calibrate.h"
 
 class POM
 {
@@ -22,7 +23,7 @@ class POM
   //private:
     void object2viewFrame (cv::Mat points3d, cv::Mat &Rvo, cv::Mat &tvo);
     void mySolvePnP (cv::Mat points3d, cv::Mat points2d, cv::Mat K, cv::Mat &Rov, cv::Mat &tov);
-    void solveFaugeras (cv::Mat points3d, cv::Mat points2d, cv::Mat &P);
+    void solveCalibrationMethods (cv::Mat points3d, cv::Mat points2d, cv::Mat &K, cv::Mat &R, cv::Mat &t, CalibrationSolvers solver);
 //    void P2Rt (cv::Mat P, cv::Mat &R, cv::Mat &t);
 //    cv::Mat Rt2P (cv::Mat R, cv::Mat t);
     //void mySolvePnPPoints (cv::Mat points3d, cv::Mat points2d, cv::Mat K, cv::Mat &Rov, cv::Mat &tov);

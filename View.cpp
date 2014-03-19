@@ -12,6 +12,8 @@ K_(K), descriptors_(indices) {
     points2d_ = Mat(points3d.rows, 2, matrix_type);
     noise_ = noise;
 
+    cout << "KikouView" << endl;
+    cout << points3d << endl;
     for ( size_t i = 0; i < points3d.rows; ++i ) {
         Mat point3d = points3d.row(i);
         Mat point2d (1, 2, matrix_type);

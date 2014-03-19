@@ -1,37 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+	<File name="Calibrate.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="4032" topLine="52" />
+	</File>
+	<File name="Calibrate.h" open="0" top="0" tabpos="0">
+		<Cursor position="647" topLine="0" />
+	</File>
+	<File name="LM.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="1356" topLine="0" />
+	</File>
+	<File name="LM.h" open="0" top="0" tabpos="7">
+		<Cursor position="1868" topLine="22" />
+	</File>
 	<File name="Object.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="41" topLine="0" />
 	</File>
 	<File name="Object.h" open="0" top="0" tabpos="0">
 		<Cursor position="70" topLine="0" />
 	</File>
-	<File name="POM.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="371" topLine="36" />
+	<File name="POM.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="2864" topLine="75" />
 	</File>
 	<File name="POM.h" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="Simulateur.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="2170" topLine="6" />
+	<File name="Simulateur.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="4778" topLine="0" />
 	</File>
 	<File name="Simulateur.h" open="0" top="0" tabpos="4">
-		<Cursor position="132" topLine="0" />
+		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="View.cpp" open="1" top="1" tabpos="5">
-		<Cursor position="651" topLine="3" />
+	<File name="Simulateur2.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="1684" topLine="18" />
 	</File>
-	<File name="View.h" open="1" top="0" tabpos="4">
+	<File name="Simulateur2.h" open="1" top="0" tabpos="3">
+		<Cursor position="271" topLine="0" />
+	</File>
+	<File name="View.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="469" topLine="0" />
+	</File>
+	<File name="View.h" open="0" top="0" tabpos="4">
 		<Cursor position="847" topLine="7" />
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="9286" topLine="93" />
+	<File name="XpCalibrate.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="24" topLine="15" />
 	</File>
-	<File name="tools.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1861" topLine="43" />
+	<File name="XpCalibrate.h" open="1" top="0" tabpos="5">
+		<Cursor position="1711" topLine="5" />
 	</File>
-	<File name="tools.h" open="0" top="0" tabpos="4">
-		<Cursor position="399" topLine="19" />
+	<File name="main.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="2016" topLine="23" />
+	</File>
+	<File name="tools.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="888" topLine="12" />
+	</File>
+	<File name="tools.h" open="1" top="0" tabpos="8">
+		<Cursor position="533" topLine="9" />
+	</File>
+	<File name="trash.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="0" topLine="246" />
 	</File>
 </CodeBlocks_layout_file>

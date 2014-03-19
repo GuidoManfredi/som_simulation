@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1392395939 source:/home/gmanfred/devel/these/projects/SimulationModel2D/Simulateur.cpp
+1394133895 source:/home/gmanfred/devel/these/projects/SimulationModel2D/Simulateur.cpp
 	"Simulateur.h"
 
 1392042619 /home/gmanfred/devel/these/projects/SimulationModel2D/Simulateur.h
@@ -13,7 +13,7 @@
 	<opencv2/features2d/features2d.hpp>
 	"tools.h"
 
-1392386985 /home/gmanfred/devel/these/projects/SimulationModel2D/tools.h
+1393580826 /home/gmanfred/devel/these/projects/SimulationModel2D/tools.h
 	<iostream>
 	<fstream>
 	<cstdlib>
@@ -23,16 +23,16 @@
 	<opencv2/features2d/features2d.hpp>
 	<opencv2/calib3d/calib3d.hpp>
 
-1392392380 source:/home/gmanfred/devel/these/projects/SimulationModel2D/View.cpp
+1394114451 source:/home/gmanfred/devel/these/projects/SimulationModel2D/View.cpp
 	"View.h"
 	<opencv2/calib3d/calib3d.hpp>
 
-1392456365 source:/home/gmanfred/devel/these/projects/SimulationModel2D/main.cpp
-	"Simulateur.h"
-	"POM.h"
-	"POM2.h"
+1394445391 source:/home/gmanfred/devel/these/projects/SimulationModel2D/main.cpp
+	<fstream>
+	"XpCalibrate.h"
+	"Simulateur2.h"
 
-1392393609 source:/home/gmanfred/devel/these/projects/SimulationModel2D/tools.cpp
+1394189800 source:/home/gmanfred/devel/these/projects/SimulationModel2D/tools.cpp
 	"tools.h"
 	"opencv2/core/core_c.h"
 
@@ -50,15 +50,16 @@
 1392026348 /home/gmanfred/devel/these/projects/SimulationModel2D/Object.h
 	"View.h"
 
-1392887315 source:/home/gmanfred/devel/these/projects/SimulationModel2D/POM.cpp
+1394112327 source:/home/gmanfred/devel/these/projects/SimulationModel2D/POM.cpp
 	"POM.h"
 	"opencv2/core/core_c.h"
 
-1392887352 /home/gmanfred/devel/these/projects/SimulationModel2D/POM.h
+1393580078 /home/gmanfred/devel/these/projects/SimulationModel2D/POM.h
 	<opencv2/core/core.hpp>
 	<opencv2/calib3d/calib3d.hpp>
 	"tools.h"
 	"Object.h"
+	"Calibrate.h"
 
 1392310829 source:/home/gmanfred/devel/these/projects/SimulationModel2D/POM2.cpp
 	"POM2.h"
@@ -67,6 +68,45 @@
 1392308368 /home/gmanfred/devel/these/projects/SimulationModel2D/POM2.h
 	<opencv2/core/core.hpp>
 	<opencv2/calib3d/calib3d.hpp>
+	"tools.h"
+	"Object.h"
+
+1394441921 source:/home/gmanfred/devel/these/projects/SimulationModel2D/Calibrate.cpp
+	"Calibrate.h"
+	<opencv2/core/core_c.h>
+
+1394188963 /home/gmanfred/devel/these/projects/SimulationModel2D/Calibrate.h
+	"tools.h"
+
+1393950010 source:/home/gmanfred/devel/these/projects/SimulationModel2D/LM.cpp
+	"LM.h"
+
+1393856747 /home/gmanfred/devel/these/projects/SimulationModel2D/LM.h
+	"lmmin.h"
+	"tools.h"
+
+1394445746 source:/home/gmanfred/devel/these/projects/SimulationModel2D/XpCalibrate.cpp
+	"XpCalibrate.h"
+
+1394444283 /home/gmanfred/devel/these/projects/SimulationModel2D/XpCalibrate.h
+	"Object.h"
+	"tools.h"
+	"POM.h"
+	"LM.h"
+	"Simulateur2.h"
+
+1393857752 source:/home/gmanfred/devel/these/projects/SimulationModel2D/trash.cpp
+	"Simulateur.h"
+	"POM.h"
+	"POM2.h"
+	"LM.h"
+
+1394441572 source:/home/gmanfred/devel/these/projects/SimulationModel2D/Simulateur2.cpp
+	"Simulateur2.h"
+	"opencv2/core/core_c.h"
+
+1394190852 /home/gmanfred/devel/these/projects/SimulationModel2D/Simulateur2.h
+	<iostream>
 	"tools.h"
 	"Object.h"
 
